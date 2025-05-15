@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English-Khmer Translation | Effortless English With Rithy</title>
+    <link rel="stylesheet" href="../Style/Style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Translation Page Specific Styles */
+        .translations-container {
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .translations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .translation-item {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .translation-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            cursor: pointer;
+        }
+
+        .translation-image {
+            width: 100px;
+            height: 100px;
+            min-width: 100px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-right: 1.5rem;
+        }
+
+        .translation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .translation-item:hover .translation-image img {
+            transform: scale(1.05);
+        }
+
+        .translation-info {
+            flex: 1;
+        }
+
+        .translation-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .translation-description {
+            font-size: 1.4rem;
+            color: #555;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .toggle-btn {
+            margin-left: 1rem;
+            background: linear-gradient(135deg, #00aeff 0%, #013758 100%);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn i {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .translation-item.expanded .toggle-btn i {
+            transform: rotate(180deg);
+        }
+
+        .translation-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .translation-item.expanded .translation-content {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 2000px;
+        }
+
+        .translation-text {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .khmer-translation {
+            font-family: 'Khmer OS', 'Khmer OS Content', Arial, sans-serif;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #ddd;
+        }
+
+        .author-article{
+            color:rgb(71, 71, 71);
+            font-family: 'Khmer OS', 'Khmer OS Content', Arial, sans-serif;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .translation-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .translation-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .toggle-btn {
+                position: absolute;
+                right: 1.5rem;
+                top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="../index.html" class="logo">EFFORTLESS ENGLISH WITH RITHY</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#englishcourse">English Courses</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">English Articles<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="./englisharticle.html">Common Articles</a>
+                    <a href="./englishstories.html">English Stories</a>
+                    <a href="./englishkhmertranslation.html">Eng-Kh Translation</a>
+                </div>
+            </div>
+            <a href="../index.html#englishcourse">Online Community</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">E-Documents<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#lesson">English Videos</a>
+                    <a href="./pdfdocument.html">PDF Documents</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="../index.html#about" class="dropbtn">About Us<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#testimonials">Recommandation</a>
+                </div>
+            </div>
+            <a href="../index.html#contact">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="translations-container">
+        <h2 class="heading" style="margin-top: 8rem;">English-Khmer <span>Translations</span></h2>
+        <p style="text-align: center; font-size: 1.6rem; margin-bottom: 3rem;">
+            Use English-Khmer translation to connect new words with your everyday language.
+        </p>
+
+        <!-- Translations List -->
+        <div class="translations-list" id="translationsList">
+            <!-- Translations will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 By Effortless English with Rithy | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="./englishkhmertranslation.html"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Sample translations data
+        const translations = [
+            {
+                title: "Climate Change Article",
+                image: "https://www.blyncsy.com/wp-content/uploads/2024/09/climate-change-1024x683.jpg",
+                description: "Understanding global warming impacts - English/Khmer translation",
+                content: `
+                    <div class="english-text">
+                        <h3>Climate Change Impacts</h3>
+                        <p>Global warming is causing unprecedented changes to our planet. Rising sea levels, extreme weather events, and ecosystem disruptions are becoming more frequent. Scientists warn we must limit temperature rise to 1.5°C to avoid catastrophic consequences.</p>
+                    </div>
+                    <div class="khmer-translation">
+                        <h3>ផលប៉ះពាល់នៃការប្រែប្រួលអាកាសធាតុ</h3>
+                        <p>ការកើនឡើងសីតុណ្ហភាពពិភពលោកកំពុងបណ្តាលឱ្យមានការផ្លាស់ប្តូរដ៏ធំមិនធ្លាប់មានពីមុនមក។ ការកើនឡើងនៃកំរិតទឹកសមុទ្រ ព្រឹត្តិការណ៍អាកាសធាតុខ្លាំងៗ និងការរំខានដល់ប្រព័ន្ធអេកូឡូស៊ីកំពុងកើតឡើងញឹកញាប់ជាងមុន។ អ្នកវិទ្យាសាស្ត្រព្រមានថាយើងត្រូវតែកំណត់ការកើនឡើងសីតុណ្ហភាពត្រឹមតែ១.៥°C ដើម្បីជៀសវាងបញ្ហាធ្ងន់ធ្ងរ។</p>
+                    </div>
+                    <div class="author-article">
+                        <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                    </div>
+                `
+            },
+            {
+                title: "Historical Document",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/20171126_Angkor_Wat_4712_DxO.jpg/330px-20171126_Angkor_Wat_4712_DxO.jpg",
+                description: "Angkor Wat historical significance - English/Khmer translation",
+                content: `
+                    <div class="english-text">
+                        <h3>Angkor Wat History</h3>
+                        <p>Built in the 12th century, Angkor Wat is the largest religious monument in the world. Originally constructed as a Hindu temple dedicated to Vishnu, it gradually transformed into a Buddhist site towards the end of the 12th century.</p>
+                    </div>
+                    <div class="khmer-translation">
+                        <h3>ប្រវត្តិសាស្ត្រអង្គរវត្ត</h3>
+                        <p>អង្គរវត្តត្រូវបានសាងសង់នៅសតវត្សទី១២ ហើយជាប្រាសាទដ៏ធំបំផុតនៅលើពិភពលោក។ ដើមឡើយត្រូវបានសាងសង់ជាប្រាសាទហិណ្ឌូឧទ្ទិសថ្វាយព្រះវិស្ណុ វាត្រូវបានកែជាប្រាសាទព្រះពុទ្ធសាសនានៅចុងសតវត្សទី១២។</p>
+                    </div>
+                    <div class="author-article">
+                        <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                    </div>
+                `
+            },
+            {
+                    title: "Digital Transformation in Education",
+                    image: "https://jaro-website.s3.ap-south-1.amazonaws.com/2024/10/Technologies-used-for-digital-transformation-in-education.png",
+                    description: "How technology is reshaping modern education - English/Khmer translation",
+                    content: `
+                        <div class="english-text">
+                            <h3>Technology in Education</h3>
+                            <p>Digital transformation in education is revolutionizing the way students learn and teachers teach. With online platforms, virtual classrooms, and AI-driven tools, education is now more accessible and flexible than ever. Students in remote areas can access high-quality content, while educators can personalize learning experiences. However, challenges like digital inequality and lack of infrastructure remain significant hurdles.</p>
+                        </div>
+                        <div class="khmer-translation">
+                            <h3>បច្ចេកវិទ្យាក្នុងការអប់រំ</h3>
+                            <p>ការប្រែប្រួលឌីជីថលក្នុងការអប់រំកំពុងផ្លាស់ប្តូរយ៉ាងខ្លាំងនូវវិធីសាស្ត្រសិក្សារបស់សិស្ស និងការបង្រៀនរបស់គ្រូបង្រៀន។ ជាមួយនឹងវេទិកាអនឡាញ ថ្នាក់សៀវភៅវីរុសជាង និងឧបករណ៍ AI ការអប់រំក្លាយជាអ្វីដែលងាយស្រួល និងបត់បែនបាន។ សិស្សនៅតំបន់ដាច់ស្រយាលអាចចូលប្រើមាតិកាដែលមានគុណភាពខ្ពស់ ខណៈដែលគ្រូអាចប្តូរបទពិសោធន៍សិក្សាឲ្យសមរម្យ។ ទោះជាយ៉ាងណា បញ្ហាដូចជាភាពមិនស្មើគ្នានៃឌីជីថល និងអភិវឌ្ឍន៍បច្ចេកវិទ្យាអនុគ្រោះនៅតែជាឧបសគ្គធ្ងន់ធ្ងរ។</p>
+                        </div>
+                        <div class="author-article">
+                            <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                        </div>
+                    `
+            },
+            {
+                title: "Biodiversity and Conservation",
+                image: "https://media.howtopronounce.com/question-assets/0c88e23856a92ee4d56113e5570f9c8b.png",
+                description: "Preserving nature's variety for the future - English/Khmer translation",
+                content: `
+                    <div class="english-text">
+                        <h3>Importance of Biodiversity</h3>
+                        <p>Biodiversity refers to the variety of life on Earth—plants, animals, microorganisms, and ecosystems. It provides essential services such as food, clean air, and medicine. Human activities like deforestation and pollution threaten biodiversity, making conservation efforts more crucial than ever. Protected areas, wildlife corridors, and sustainable practices are vital tools in preserving the natural balance.</p>
+                    </div>
+                    <div class="khmer-translation">
+                        <h3>សារៈសំខាន់នៃជីវចម្រុះ</h3>
+                        <p>ជីវចម្រុះគឺជាការប្រមូលផ្ដុំអំពីជីវិតគ្រប់ប្រភេទលើផែនដី ជាដើមដូចជារុក្ខជាតិ សត្វ មីក្រូអ័រហ្គានិ즘 និងប្រព័ន្ធអេកូឡូស៊ី។ វាប្រើប្រាស់ដើម្បីផ្គត់ផ្គង់អាហារ ខ្យល់បរិសុទ្ធ និងថ្នាំ។ សកម្មភាពរបស់មនុស្សដូចជាការកាប់បំផ្លាញព្រៃឈើ និងការបំពុលបណ្តាលឲ្យជីវចម្រុះស្ថិតក្នុងស្ថានភាពគ្រោះថ្នាក់។ ដូច្នេះការពារបរិស្ថានក្លាយជាការចាំបាច់ ដោយការកំណត់តំបន់ការពារ ធ្វើផ្លូវឆ្លងសត្វព្រៃ និងប្រើវិធីប្រើប្រាស់ធនធានដ៏ចីរភាព។</p>
+                    </div>
+                    <div class="author-article">
+                        <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                    </div>
+                `
+            },
+            {
+                title: "Space Exploration",
+                image: "https://frostbrowntodd.com/app/smush-webp/2023/02/my-design-space-station-on-earth-orbit-the-satellite-has-severalcommunication-antenalso-it-maybe-spy-gps-satelite-stockpack-gettyimages-600x350.jpg.webp",
+                description: "Exploring beyond Earth - English/Khmer translation",
+                content: `
+                    <div class="english-text">
+                        <h3>The Next Frontier: Space</h3>
+                        <p>Space exploration has opened new possibilities for humanity. From moon landings to Mars missions, technological advancements have enabled scientists to study distant planets and the origins of the universe. Organizations like NASA and SpaceX are pushing the boundaries of what is possible. The future may include human settlements on Mars or lunar mining for resources.</p>
+                    </div>
+                    <div class="khmer-translation">
+                        <h3>ព្រំដែនថ្មី៖ អវកាស</h3>
+                        <p>ការស្រាវជ្រាវអវកាសបានបើកផ្លូវថ្មីសម្រាប់មនុស្សជាតិ។ ចាប់ពីការចុះចតលើព្រះច័ន្ទ ដល់បេសកកម្មទៅព្រះអង្គារ បច្ចេកវិទ្យាកំពុងអភិវឌ្ឍដល់កម្រិតអាចសិក្សាអំពីភពឆ្ងាយ និងដើមកំណើតនៃពិភពលោក។ ស្ថាប័នដូចជា NASA និង SpaceX កំពុងជំរុញសេនារីយ៍ដ៏អស្ចារ្យ។ អនាគតអាចមានការរស់នៅលើព្រះអង្គារ ឬធ្វើអាជីវកម្មជីវិតលើព្រះច័ន្ទ។</p>
+                    </div>
+                    <div class="author-article">
+                        <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                    </div>
+                `
+            },
+            {
+                title: "Mental Health Matters",
+                image: "https://i.etsystatic.com/26996630/r/il/2d228a/4856490817/il_fullxfull.4856490817_9zur.jpg",
+                description: "Mental health awareness and support - English/Khmer translation",
+                content: `
+                    <div class="english-text">
+                        <h3>Understanding Mental Health</h3>
+                        <p>Mental health is just as important as physical health. It affects how we think, feel, and act. Depression, anxiety, and stress-related conditions are common but often misunderstood. Promoting open discussions, providing accessible mental health care, and reducing stigma are key to a healthier society.</p>
+                    </div>
+                    <div class="khmer-translation">
+                        <h3>ការយល់ដឹងអំពីសុខភាពផ្លូវចិត្ត</h3>
+                        <p>សុខភាពផ្លូវចិត្តសំខាន់ដូចសុខភាពរាងកាយ។ វប៉ះពាល់ដល់វិធីដែលយើងគិត មានអារម្មណ៍ និងប្រតិបត្តិ។ ជំងឺធម្មតាដូចជាឧបសគ្គផ្លូវចិត្ត ការយល់ឃើញខុសអំពីខ្លួនឯង និងបញ្ហាថ្នាក់អារម្មណ៍ កើតមានជាញឹកញាប់។ ការផ្សព្វផ្សាយការយល់ដឹង បើកការពិភាក្សាឥតរបាំង និងផ្ដល់សេវាសុខភាពផ្លូវចិត្តគឺជាគន្លងសំខាន់នៃសង្គមដ៏រឹងមាំ។</p>
+                    </div>
+                    <div class="author-article">
+                        <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                    </div>
+                `
+            },
+            {
+                title: "Clean Energy Solutions",
+                image: "https://justenergy.com/wp-content/uploads/2021/07/clean-energy-solutions-illustration.jpg",
+                description: "Transitioning to renewable energy - English/Khmer translation",
+                content: `
+                    <div class="english-text">
+                        <h3>Embracing Renewable Energy</h3>
+                        <p>As climate concerns grow, the world is shifting towards cleaner, renewable energy sources like solar, wind, and hydroelectric power. These alternatives reduce reliance on fossil fuels and help cut greenhouse gas emissions. Investing in clean energy also creates jobs and supports sustainable economic growth for future generations.</p>
+                    </div>
+                    <div class="khmer-translation">
+                        <h3>ការទទួលយកថាមពលបៃតង</h3>
+                        <p>ក្នុងអំឡុងពេលបញ្ហាអាកាសធាតុកើនឡើង ពិភពលោកកំពុងផ្លាស់ប្តូរទៅប្រើថាមពលបៃតងដូចជា ថាមពលព្រះអាទិត្យ ខ្យល់ និងទឹក។ វាជម្រើសសម្រាប់បន្ថយការពឹងផ្អែកលើថាមពលហ្វូស៊ីល និងកាត់បន្ថយការបាញ់ឧស្ម័នផ្ទះកញ្ចក់។ ការវិនិយោគលើថាមពលស្អាតមិនត្រឹមតែជួយបរិស្ថានទេ ប៉ុន្តែបង្កើតការងារ និងជួយអភិវឌ្ឍសេដ្ឋកិច្ចយ៉ាងចីរភាព។</p>
+                    </div>
+                    <div class="author-article">
+                        <p>By: <a href="https://t.me/Som_Rithy">Som Rithy</a></p>
+                    </div>
+                `
+            }
+        ];
+
+        // DOM elements
+        const translationsList = document.getElementById('translationsList');
+
+        // Display translations
+        function displayTranslations() {
+            translationsList.innerHTML = '';
+            
+            translations.forEach((translation, index) => {
+                const translationItem = document.createElement('div');
+                translationItem.className = 'translation-item';
+                translationItem.innerHTML = `
+                    <div class="translation-header">
+                        <div class="translation-image">
+                            <img src="${translation.image}" alt="${translation.title}" onerror="this.src='./image/default-translation.jpg'">
+                        </div>
+                        <div class="translation-info">
+                            <h3 class="translation-title">${translation.title}</h3>
+                            <p class="translation-description">${translation.description}</p>
+                        </div>
+                        <button class="toggle-btn">
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                    </div>
+                    <div class="translation-content">
+                        <div class="translation-text">${translation.content}</div>
+                    </div>
+                `;
+                
+                const toggleBtn = translationItem.querySelector('.toggle-btn');
+                const header = translationItem.querySelector('.translation-header');
+                
+                header.addEventListener('click', () => {
+                    translationItem.classList.toggle('expanded');
+                });
+                
+                toggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    translationItem.classList.toggle('expanded');
+                });
+                
+                translationsList.appendChild(translationItem);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', displayTranslations);
+    </script>
+
+    <!-- Your existing scripts -->
+    <script src="../Javascript/Scrip.js"></script>
+    
+</body>
+</html>

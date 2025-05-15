@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Stories | Effortless English With Rithy</title>
+    <link rel="stylesheet" href="../Style/Style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Story Page Specific Styles */
+        .stories-container {
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .story-item {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            cursor: pointer;
+        }
+
+        .story-image {
+            width: 100px;
+            height: 100px;
+            min-width: 100px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-right: 1.5rem;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .story-item:hover .story-image img {
+            transform: scale(1.05);
+        }
+
+        .story-info {
+            flex: 1;
+        }
+
+        .story-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .story-description {
+            font-size: 1.4rem;
+            color: #555;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .toggle-btn {
+            margin-left: 1rem;
+            background: linear-gradient(135deg, #0099ff 0%, #013758 100%);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn i {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .story-item.expanded .toggle-btn i {
+            transform: rotate(180deg);
+        }
+
+        .story-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .story-item.expanded .story-content {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 2000px;
+        }
+
+        .story-text {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .story-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .story-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .toggle-btn {
+                position: absolute;
+                right: 1.5rem;
+                top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="../index.html" class="logo">EFFORTLESS ENGLISH WITH RITHY</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#englishcourse">English Courses</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">English Articles<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="./englisharticle.html">Common Articles</a>
+                    <a href="./englishstories.html">English Stories</a>
+                    <a href="./englishkhmertranslation.html">Eng-Kh Translation</a>
+                </div>
+            </div>
+            <a href="../index.html#englishcourse">Online Community</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">E-Documents<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#lesson">English Videos</a>
+                    <a href="./pdfdocument.html">PDF Documents</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="../index.html#about" class="dropbtn">About Us<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#testimonials">Recommandation</a>
+                </div>
+            </div>
+            <a href="../index.html#contact">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="stories-container">
+        <h2 class="heading" style="margin-top: 8rem;">English <span>Stories</span></h2>
+        <p style="text-align: center; font-size: 1.6rem; margin-bottom: 3rem;">
+            Let’s boost your fluency by reading and listening to simple English stories.
+        </p>
+
+        <!-- Stories List -->
+        <div class="stories-list" id="storiesList">
+            <!-- Stories will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 By Effortless English with Rithy | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="./englishstory.html"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Sample stories data
+        const stories = [
+            {
+                title: "The Mysterious Key",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "A young boy discovers a mysterious key that leads to an unexpected adventure.",
+                content: `
+                    <h3>Chapter 1: The Discovery</h3>
+                    <p>It was a rainy Tuesday afternoon when Tom found the key. He was walking home from school, taking his usual shortcut through the old park, when something glinted in the mud near the big oak tree. At first, he thought it was just a bottle cap, but when he picked it up, he realized it was an old, ornate key.</p>
+                    <br>
+                    <h3>Chapter 2: The Old House</h3>
+                    <p>The key was heavy in Tom's pocket as he stood before the abandoned house on Willow Street. No one had lived there for as long as he could remember. The paint was peeling, and the garden was overgrown. But today, for the first time, Tom noticed something strange - a small, almost invisible keyhole in the basement window frame.</p>
+                    
+                    <p>With trembling hands, Tom inserted the key. It fit perfectly. With a click that seemed too loud in the quiet afternoon, the window creaked open...</p>
+                    <br>
+                    <p>By: Som Rithy</p>
+                `
+            },
+            {
+                title: "The Wise Owl",
+                image: "https://images.unsplash.com/photo-1574085975024-eaa85ec28107?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "A wise owl teaches valuable life lessons to forest animals.",
+                content: `
+                    <h3>Chapter 1: The Forest Meeting</h3>
+                    <p>In the heart of the ancient forest, all the animals gathered beneath the Great Oak. There was trouble in the forest - the river was drying up, and food was becoming scarce. Arguments broke out daily between the rabbits and the foxes, the squirrels and the birds.</p>
+                    
+                    <p>Old Owl, who had seen many seasons come and go, watched from his high perch. Finally, he spread his great wings and glided down to the gathering.</p>
+                    <br>
+                    <h3>Chapter 2: The Lesson</h3>
+                    <p>"Listen to me, all of you," hooted Old Owl. "I have lived through ten droughts and seven floods. I have seen predators and prey find ways to survive together. The problem isn't the lack of water or food - the problem is how you're thinking about it."</p>
+                    
+                    <p>The animals fell silent as Old Owl began to share his wisdom...</p>
+                    <br>
+                    <p>By: Som Rithy</p>
+                `
+            },
+            {
+                title: "The Lost Puppy",
+                image: "https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                description: "A heartwarming tale about a lost puppy finding his way home.",
+                content: `
+                    <h3>Chapter 1: Alone in the Big City</h3>
+                    <p>Max the puppy had never seen so many legs before. Tall legs, short legs, legs in shiny shoes and legs in sneakers - they all rushed by without noticing the small golden retriever trembling by the bus stop.</p>
+                    
+                    <p>One moment he had been happily walking with his owner, Sarah, and the next moment - after a loud noise scared him - he was running, and then he was lost.</p>
+                    <br>
+                    <h3>Chapter 2: Kind Strangers</h3>
+                    <p>As night fell, Max curled up in a cardboard box behind a restaurant. The smells of food made his stomach growl. Then, a shadow fell over him - not legs this time, but a kind face looking down.</p>
+                    
+                    <p>"Well hello there, little guy," said the man in the apron. "You look like you could use some dinner and a warm place to sleep."</p>
+                    
+                    <p>Max didn't know it yet, but this was the first step on his journey home...</p>
+                    <br>
+                    <p>By: Som Rithy</p>
+                `
+            }
+        ];
+
+        // DOM elements
+        const storiesList = document.getElementById('storiesList');
+
+        // Display stories
+        function displayStories() {
+            storiesList.innerHTML = '';
+            
+            stories.forEach((story, index) => {
+                const storyItem = document.createElement('div');
+                storyItem.className = 'story-item';
+                storyItem.innerHTML = `
+                    <div class="story-header">
+                        <div class="story-image">
+                            <img src="${story.image}" alt="${story.title}" onerror="this.src='./image/default-story.jpg'">
+                        </div>
+                        <div class="story-info">
+                            <h3 class="story-title">${story.title}</h3>
+                            <p class="story-description">${story.description}</p>
+                        </div>
+                        <button class="toggle-btn">
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                    </div>
+                    <div class="story-content">
+                        <div class="story-text">${story.content}</div>
+                    </div>
+                `;
+                
+                const toggleBtn = storyItem.querySelector('.toggle-btn');
+                const header = storyItem.querySelector('.story-header');
+                
+                // Click event for the whole header
+                header.addEventListener('click', () => {
+                    storyItem.classList.toggle('expanded');
+                });
+                
+                // Click event just for the button (to prevent double trigger)
+                toggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    storyItem.classList.toggle('expanded');
+                });
+                
+                storiesList.appendChild(storyItem);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', displayStories);
+    </script>
+
+    <!-- Your existing scripts -->
+    <script src="../Javascript/Scrip.js"></script>
+    
+</body>
+</html>

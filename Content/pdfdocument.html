@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Documents | Effortless English With Rithy</title>
+    <link rel="stylesheet" href="../Style/Style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="./image/Right.png" type="image/png">
+    <style>
+        /* PDF Document Page Specific Styles */
+        .pdf-container {
+            padding: 2rem 5%;
+        }
+        
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .pdf-card {
+            background: linear-gradient(100deg, #ffffff 50%, #6ee2ff 100%);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .pdf-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pdf-image {
+            height: auto;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pdf-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .pdf-content {
+            padding: 1.5rem;
+        }
+        
+        .pdf-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .pdf-description {
+            font-size: 1.4rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .pdf-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .pdf-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            font-size: 1.4rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pdf-btn.open {
+            background: linear-gradient(135deg, #00eeff 0%, #000000 100%);
+            color: white;
+        }
+        
+        .pdf-btn.download {
+            background: linear-gradient(135deg, #ff4281 0%, #004caf 100%);
+            color: rgb(255, 255, 255);
+        }
+        
+        .pdf-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .page-numbers {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .page-number {
+            padding: 0.8rem 1.2rem;
+            background: #f0f0f0;
+            color: var(--text-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.4rem;
+            border: none;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            text-align: center;
+        }
+        .page-number:hover {
+            background: var(--main-color);
+            color: white;
+        }
+        
+        .page-number.active {
+            background: var(--main-color);
+            color: white;
+            font-weight: bold;
+        }
+        .pagination-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--main-color);
+            color: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.4rem;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .pagination-info {
+            text-align: center;
+            font-size: 1.6rem;
+            margin: 2rem 0;
+            color: var(--text-color);
+        }
+        
+        @media (max-width: 768px) {
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pdf-actions {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Reuse your existing header -->
+    <header class="header">
+        <a href="../index.html" class="logo">EFFORTLESS ENGLISH WITH RITHY</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#englishcourse">English Courses</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">English Articles<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="./englisharticle.html">Common Articles</a>
+                    <a href="./englishstories.html">English Stories</a>
+                    <a href="#">Eng-Kh Translation</a>
+                </div>
+            </div>
+            <a href="../index.html#portfolio">Online Community</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">E-Documents<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#lesson">English Videos</a>
+                    <a href="pdfdocument.html">PDF Documents</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="../index.html#about" class="dropbtn">About Us<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#testimonials">Recommandation</a>
+                </div>
+            </div>
+            <a href="../index.html#contact">Contact Us</a>
+
+        </nav>
+    </header>
+
+    <section class="pdf-container">
+        <h2 class="heading" style="margin-top: 8rem;">PDF <span>Documents</span></h2>
+        <p style="text-align: center; font-size: 1.6rem; margin-bottom: 3rem;">
+            Free English Spoken Sentence Structures PDF.
+        </p>
+        
+        <div class="pagination-info" id="pageInfo">Page 1 of 3</div>
+        
+        <div class="pdf-grid" id="pdfGrid">
+            <!-- PDF cards will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="pagination">
+            <button class="pagination-btn" id="prevBtn" disabled>Previous</button>
+            <div class="page-numbers" id="pageNumbers"></div>
+            <button class="pagination-btn" id="nextBtn">Next</button>
+        </div>
+    </section>
+
+    <!-- Reuse your existing footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 By Effortless English with Rithy | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="./pdfdocument.html"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // PDF Data - Replace with your actual PDF files
+        const pdfData = [
+            {
+                title: "Unit 1 Basic usage of I'm",
+                description: "I'm' is an abbreviation for the word 'I AM.' It is used in combination with other...",
+                image: "../image/pdfimage/pic1.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 1 Basic usage of I'm.PDF"
+            },
+            {
+                title: "Unit 2 Variations of <I'm in; on; at>",
+                description: "Describes an action you are doing. Most commonly, you would use the word 'in'...",
+                image: "../image/pdfimage/pic2.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 2 Variations of 'I'm in; on; at.PDF"
+            },
+            {
+                title: "Unit 3 I'm good at ",
+                description: "Again, 'I'm' is used here as 'I am.' 'Good at' informs someone what you excel at...",
+                image: "../image/pdfimage/pic3.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 3 I'm good at.PDF"
+            },
+            {
+                title: "Unit 4 I'm getting",
+                description: "When combining the words 'I am' and 'getting' you are telling someone 'you'...",
+                image: "../image/pdfimage/pic4.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 4 I'm getting.PDF"
+            },
+            {
+                title: "Unit 5 I'm trying + (verb)",
+                description: "I am trying' informs someone that you are attempting to accomplish...",
+                image: "../image/pdfimage/pic5.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 5 I'm trying + (verb).PDF"
+            },
+            {
+                title: "Unit 6 I'm gonna + (noun)",
+                description: "The word 'gonna' is incorrect grammatically. The equivalent in proper...",
+                image: "../image/pdfimage/pic6.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 6 I'm gonna + (verb).PDF"
+            },
+            {
+                title: "Unit 7 I have + (noun)",
+                description: "By using the words 'I have' you are informing someone of something you...",
+                image: "../image/pdfimage/pic7.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 7 I have + (noun).PDF"
+            },
+            {
+                title: "Unit 8 I have + (past participle)",
+                description: "Again, 'I have' shows possession or something acquired. By adding...",
+                image: "../image/pdfimage/pic8.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 8 I have + (past participle).PDF"
+            },
+            {
+                title: "Unit 9 I used to + (verb)",
+                description: "Used to' expresses something that was done in the past...",
+                image: "../image/pdfimage/pic9.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 9 I used to + (verb).PDF"
+            },
+            // Add 28 more PDF objects following the same structure
+            // I'm showing 2 examples, you'll need to add the rest
+            // ...
+            {
+                title: "Unit 10 I have to + (verb)",
+                description: "The words 'have to' describe something that needs to take place...",
+                image: "../image/pdfimage/pic10.png",
+                openPath: "https://t.me/Som_Rithy",
+                downloadPath: "../image/pdf/Unit 10. I have to + (verb).PDF"
+            }
+        ];
+
+        // Fill the array with 30 items (you can remove this in production)
+        //for (let i = pdfData.length + 1; i <= 30; i++) {
+            //pdfData.push({
+                //title: `Sample PDF ${i}`,
+                //description: `This is a sample description for PDF document number ${i}.`,
+                //image: "./image/pdf-thumbnail-default.jpg",
+                //openPath: `./pdfs/sample-${i}.pdf`,
+                //downloadPath: `./pdfs/sample-${i}.pdf`
+            //});
+        //}
+
+        // Pagination variables
+        const itemsPerPage = 10;
+        let currentPage = 1;
+        const totalPages = Math.ceil(pdfData.length / itemsPerPage);
+
+        // DOM elements
+        const pdfGrid = document.getElementById('pdfGrid');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageInfo = document.getElementById('pageInfo');
+
+       // Update the displayPDFs function
+function displayPDFs(page) {
+    pdfGrid.innerHTML = '';
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, pdfData.length);
+    
+    for (let i = startIndex; i < endIndex; i++) {
+        const pdf = pdfData[i];
+        const pdfCard = document.createElement('div');
+        pdfCard.className = 'pdf-card';
+        pdfCard.innerHTML = `
+            <div class="pdf-image">
+                <img src="${pdf.image}" alt="${pdf.title}">
+            </div>
+            <div class="pdf-content">
+                <h3 class="pdf-title">${pdf.title}</h3>
+                <p class="pdf-description">${pdf.description}</p>
+                <div class="pdf-actions">
+                    <a href="${pdf.openPath}" target="_blank" class="pdf-btn open"><span><i class='bx bxl-telegram' style="font-size:20px; color: white; vertical-align: sub;"></i></span> Contact</a>
+                    <a href="${pdf.downloadPath}" download class="pdf-btn download"><span><i class='bx bx-cloud-download' style="font-size:20px; color: white; vertical-align: sub;"></i></span> Download</a>
+                </div>
+            </div>
+        `;
+        pdfGrid.appendChild(pdfCard);
+    }
+    
+    // Update page info
+    pageInfo.textContent = `Page ${page} of ${totalPages}`;
+    
+    // Update button states
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+    
+    // Update page numbers
+    updatePageNumbers(page);
+}
+
+// New function to update page numbers
+function updatePageNumbers(currentPage) {
+    const pageNumbers = document.getElementById('pageNumbers');
+    pageNumbers.innerHTML = '';
+    
+    // Always show first page
+    addPageNumber(1, currentPage);
+    
+    // Show ellipsis if needed after first page
+    if (currentPage > 3) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.style.padding = '0.8rem 0.5rem';
+        pageNumbers.appendChild(ellipsis);
+    }
+    
+    // Show current page and neighbors
+    const startPage = Math.max(2, currentPage - 1);
+    const endPage = Math.min(totalPages - 1, currentPage + 1);
+    
+    for (let i = startPage; i <= endPage; i++) {
+        addPageNumber(i, currentPage);
+    }
+    
+    // Show ellipsis if needed before last page
+    if (currentPage < totalPages - 2) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.style.padding = '0.8rem 0.5rem';
+        pageNumbers.appendChild(ellipsis);
+    }
+    
+    // Always show last page if different from first
+    if (totalPages > 1) {
+        addPageNumber(totalPages, currentPage);
+    }
+}
+
+// Helper function to add a page number button
+function addPageNumber(page, currentPage) {
+    const pageNumber = document.createElement('button');
+    pageNumber.className = `page-number ${page === currentPage ? 'active' : ''}`;
+    pageNumber.textContent = page;
+    pageNumber.addEventListener('click', () => {
+        currentPage = page;
+        displayPDFs(currentPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.getElementById('pageNumbers').appendChild(pageNumber);
+}
+
+// Initialize
+displayPDFs(currentPage);
+        // Event listeners for pagination
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPDFs(currentPage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayPDFs(currentPage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        // Initialize
+        displayPDFs(currentPage);
+    </script>
+
+    <!-- Reuse your existing scripts -->
+    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="../Javascript/Scrip.js"></script>
+    
+</body>
+</html>

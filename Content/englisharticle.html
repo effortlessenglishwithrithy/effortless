@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Articles | Effortless English With Rithy</title>
+    <link rel="stylesheet" href="../Style/Style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Article Page Specific Styles */
+        
+        .article-container {
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .article-card {
+            background: linear-gradient(135deg, #ffffff 0%, #00aac0 100%);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+        
+        .article-preview {
+            padding: 1.5rem;
+        }
+        
+        .article-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .article-excerpt {
+            font-size: 1.4rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .article-date {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        
+        .read-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #9900ff 0%, #013758 100%);
+            color: white;
+            border-radius: 1rem;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+        
+        .read-btn:hover {
+            background: linear-gradient(135deg, #013758 0%,  #9900ff 100%);
+            transform: translateY(-2px);
+        }
+        
+        /* Expanded Article View */
+        .article-expanded {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .article-content {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .close-article {
+            display: block;
+            text-align: right;
+            margin-top: 1rem;
+            color: var(--main-color);
+            cursor: pointer;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        
+        .admin-form {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .admin-form input, 
+        .admin-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+        }
+        
+        .admin-form textarea {
+            min-height: 150px;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .admin-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .save-btn {
+            background: var(--main-color);
+            color: white;
+            border: none;
+        }
+        
+        .logout-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+        }
+        
+        .login-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--main-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+        }
+        
+        .login-form-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .login-btn, .cancel-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .login-btn {
+            background: var(--main-color);
+            color: white;
+            border: none;
+        }
+        
+        .cancel-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="../index.html" class="logo">EFFORTLESS ENGLISH WITH RITHY</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#englishcourse">English Courses</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">English Articles<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="./englisharticle.html">Common Articles</a>
+                    <a href="./englishstories.html">English Stories</a>
+                    <a href="./englishkhmertranslation.html">Eng-Kh Translation</a>
+                </div>
+            </div>
+            <a href="../index.html#englishcourse">Online Community</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">E-Documents<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#lesson">English Videos</a>
+                    <a href="./pdfdocument.html">PDF Documents</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="../index.html#about" class="dropbtn">About Us<i class='bx bx-chevron-down' style="padding-right:15px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../index.html#testimonials">Recommandation</a>
+                </div>
+            </div>
+            <a href="../index.html#contact">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="article-container">
+        <h2 class="heading" style="margin-top: 8rem;">Comon English <span>Articles</span></h2>
+        <p style="text-align: center; font-size: 1.6rem; margin-bottom: 3rem;">
+            Let’s explore how common English articles can boost your fluency and grammar.
+        </p>
+        
+        <!-- Admin Panel (hidden by default) -->
+        <div class="admin-panel" id="adminPanel">
+            <h3>Admin Panel</h3>
+            <form class="admin-form" id="articleForm">
+                <input type="text" id="articleTitle" placeholder="Article Title" required>
+                <input type="text" id="articleImage" placeholder="Image URL">
+                <textarea id="articleContent" placeholder="Article content (Markdown supported)" required></textarea>
+                <div class="admin-actions">
+                    <button type="submit" class="admin-btn save-btn">Save Article</button>
+                    <button type="button" class="admin-btn logout-btn" id="logoutBtn">Logout</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Articles Grid -->
+        <div class="article-grid" id="articleGrid">
+            <!-- Articles will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Admin Login Toggle Button (Only visible to admins) -->
+    <div class="login-toggle" id="loginToggle">
+        <i class='bx bx-lock-alt'></i>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <h3 style="margin-bottom:1.5rem;">Admin Login</h3>
+            <form id="loginForm" class="login-form">
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" required>
+                <div class="login-form-buttons">
+                    <button type="submit" class="login-btn">Login</button>
+                    <button type="button" id="cancelLogin" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 By Effortless English with Rithy | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="./englisharticle.html"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <!-- Marked.js for markdown support -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <script>
+        // Constants
+        const ADMIN_PASSWORD = "Rithy&EER@ESR"; // Fixed admin password
+        
+        // DOM elements
+        const articleGrid = document.getElementById('articleGrid');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginToggle = document.getElementById('loginToggle');
+        const loginModal = document.getElementById('loginModal');
+        const loginForm = document.getElementById('loginForm');
+        const cancelLogin = document.getElementById('cancelLogin');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const articleForm = document.getElementById('articleForm');
+        
+        // Sample articles data (if localStorage is empty)
+        const defaultArticles = [
+            {
+                id: 1,
+                title: "10 Common Grammar Mistakes",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvoFXKwtChI4UqsDhM9y3cx1bwpTeqxxfA_A&s",
+                excerpt: "Learn about the most common English grammar mistakes and how to avoid them.",
+                content: "# 10 Common Grammar Mistakes\n\nGrammar mistakes can be embarrassing and might affect how others perceive your communication skills. Here are 10 common grammar mistakes to watch out for:\n\n## 1. Subject-Verb Agreement\nMake sure the subject and verb agree in number. For example, say \"She walks\" not \"She walk.\"\n\n## 2. Misusing Apostrophes\nUse apostrophes for possession or contraction, not for plurals. For example, \"The dog's bone\" (possession) not \"The dog's are barking\" (incorrect).\n\n## 3. Their/There/They're\n- Their: Possessive pronoun (Their books are on the table)\n- There: Location (Put it over there)\n- They're: Contraction of \"they are\" (They're coming to the party)\n\n## 4. Your/You're\n- Your: Possessive pronoun (Your book is here)\n- You're: Contraction of \"you are\" (You're going to love this)\n\n## 5. Its/It's\n- Its: Possessive pronoun (The dog wagged its tail)\n- It's: Contraction of \"it is\" (It's going to rain)\n\n## 6. Affect/Effect\n- Affect: Usually a verb meaning to influence (The weather affected our plans)\n- Effect: Usually a noun meaning result (The effect was immediate)\n\n## 7. Who/Whom\n- Who: Subject of a sentence or clause (Who is coming?)\n- Whom: Object of a verb or preposition (To whom should I address this?)\n\n## 8. Incorrect Sentence Fragments\nMake sure each sentence has a subject and a verb and expresses a complete thought.\n\n## 9. Run-on Sentences\nDon't join independent clauses without proper punctuation or conjunctions.\n\n## 10. Misplaced Modifiers\nMake sure modifiers are placed close to what they're modifying to avoid confusion.\n\nImproving your grammar takes practice, but being aware of these common mistakes is the first step toward better writing and speaking skills! \n\n By: Som Rithy",
+                date: "2025-05-14",
+                active: true
+            },
+            {
+                id: 2,
+                title: "Improve Your Vocabulary",
+                image: "https://cdnapisec.kaltura.com/html5/html5lib/v2.101/modules/KalturaSupport/thumbnail.php/p/4764982/uiconf_id/53181732/entry_id/1_ex1tt6og/height/480?&flashvars[parentDomain]=https%3A%2F%2Fwww.vocabulary.com%2F",
+                excerpt: "Effective techniques to expand your English vocabulary quickly.",
+                content: "# Improve Your Vocabulary\n\nA rich vocabulary allows you to express yourself more clearly and precisely. Here are some effective techniques to expand your English vocabulary:\n\n## Read Widely and Regularly\nReading exposes you to words in context, which helps you understand their meaning and usage. Try different genres and topics to encounter diverse vocabulary.\n\n## Keep a Vocabulary Journal\nWhen you encounter a new word, write it down along with its definition, synonyms, antonyms, and a sample sentence. Review your journal regularly.\n\n## Use New Words in Conversation\nPractice using new words in your everyday conversations. This helps cement the words in your memory.\n\n## Play Word Games\nGames like Scrabble, crossword puzzles, and word searches can make vocabulary building fun and engaging.\n\n## Use Flashcards\nCreate flashcards with new words on one side and definitions on the other. Review them regularly, especially during idle moments.\n\n## Learn Word Roots, Prefixes, and Suffixes\nUnderstanding these elements can help you decipher the meaning of unfamiliar words. For example, knowing that \"bio\" means life can help you understand words like biology, biography, and biodiversity.\n\n## Use a Thesaurus\nWhen writing, consult a thesaurus to find more precise or varied words. This can help you avoid repetition and enhance your expression.\n\n## Subscribe to \"Word of the Day\"\nMany websites and apps offer a \"Word of the Day\" feature. Subscribe to one and try to use that word during the day.\n\n## Context Clues\nPractice figuring out word meanings from context. This skill is valuable for both reading comprehension and vocabulary expansion.\n\n## Be Curious About Words\nDevelop a genuine interest in words, their origins, and their nuances. A curious mindset fosters continuous learning.\n\nRemember, vocabulary building is a gradual process. Consistency is key!\n\n By: Som Rithy",
+                date: "2025-05-14",
+                active: true
+            },
+            {
+                id: 3,
+                title: "Mastering English Pronunciation",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmqmesv5oQfJSS1-w_5jxm2pTMrRX73KiYeA&s",
+                excerpt: "Tips and techniques for improving your English pronunciation.",
+                content: "# Mastering English Pronunciation\n\nGood pronunciation is essential for clear communication in English. Here are some tips to help you improve:\n\n## Listen Actively\nPay close attention to native speakers. Notice how they pronounce words, their intonation patterns, and rhythm.\n\n## Record Yourself\nRecord yourself speaking English and compare it with native pronunciations. This helps identify areas for improvement.\n\n## Practice Minimal Pairs\nMinimal pairs are words that differ by only one sound, like \"ship\" and \"sheep.\" Practicing these helps distinguish similar sounds.\n\n## Focus on Stress Patterns\nEnglish words have specific stress patterns. Stressing the wrong syllable can make a word unintelligible. For example, \"PHO-to-graph\" vs. \"pho-TO-gra-phy.\"\n\n## Use a Pronunciation Dictionary\nMany online dictionaries provide audio pronunciations. Use them to check words you're unsure about.\n\n## Learn the Phonetic Alphabet\nThe International Phonetic Alphabet (IPA) can be a valuable tool for understanding how sounds are formed.\n\n## Pay Attention to Mouth Position\nNotice how your mouth, tongue, and lips should be positioned to produce certain sounds.\n\n## Practice Tongue Twisters\nTongue twisters like \"She sells seashells by the seashore\" can help improve your articulation.\n\n## Join a Speaking Group\nPracticing with others provides feedback and encouragement. Consider joining an English conversation club.\n\n## Be Patient with Yourself\nImproving pronunciation takes time. Celebrate small victories and don't get discouraged by setbacks.\n\nRemember, the goal isn't necessarily to sound exactly like a native speaker but to communicate clearly and confidently in English.\n\n By: Som Rithy",
+                date: "2025-05-14",
+                active: true
+            }
+            
+        ];
+        
+        // Load articles from localStorage or use defaults
+        let articles = JSON.parse(localStorage.getItem('englishArticles')) || defaultArticles;
+        
+        // Save articles to localStorage
+        function saveArticles() {
+            localStorage.setItem('englishArticles', JSON.stringify(articles));
+        }
+        
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+        
+        // Display articles
+        function displayArticles() {
+            articleGrid.innerHTML = '';
+            
+            const activeArticles = articles.filter(article => article.active);
+            
+            if (activeArticles.length === 0) {
+                articleGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; font-size:1.6rem;">No articles available yet.</p>';
+                return;
+            }
+            
+            activeArticles.forEach(article => {
+                const articleCard = document.createElement('div');
+                articleCard.className = 'article-card';
+                articleCard.innerHTML = `
+                    <div class="article-image">
+                        <img src="${article.image || './image/article-default.jpg'}" alt="${article.title}" onerror="this.src='./image/article-default.jpg'">
+                    </div>
+                    <div class="article-preview">
+                        <div class="article-date">${formatDate(article.date)}</div>
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <button class="read-btn" data-id="${article.id}">Read Now</button>
+                        ${isAdmin() ? `<button class="admin-btn" onclick="toggleArticleStatus(${article.id})">Hide Article</button>` : ''}
+                    </div>
+                    <div class="article-expanded" id="article-${article.id}">
+                        <div class="article-content"></div>
+                        <span class="close-article">Close <i class='bx bx-x'></i></span>
+                    </div>
+                `;
+                articleGrid.appendChild(articleCard);
+                
+                // Set the article content with markdown rendering
+                const contentDiv = articleCard.querySelector(`#article-${article.id} .article-content`);
+                contentDiv.innerHTML = marked.parse(article.content);
+            });
+            
+            // Add event listeners to read buttons
+            document.querySelectorAll('.read-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const articleId = this.getAttribute('data-id');
+                    const expandedContent = document.getElementById(`article-${articleId}`);
+                    
+                    // Close all other expanded articles
+                    document.querySelectorAll('.article-expanded').forEach(item => {
+                        if (item.id !== `article-${articleId}`) {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Toggle current article
+                    if (expandedContent.style.display === 'block') {
+                        expandedContent.style.display = 'none';
+                    } else {
+                        expandedContent.style.display = 'block';
+                        expandedContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+            
+            // Add event listeners to close buttons
+            document.querySelectorAll('.close-article').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.parentElement.style.display = 'none';
+                });
+            });
+        }
+        
+        // Check if user is admin
+        function isAdmin() {
+            return sessionStorage.getItem('isAdmin') === 'true';
+        }
+        
+        // Toggle article status (active/inactive)
+        window.toggleArticleStatus = function(id) {
+            if (!isAdmin()) return;
+            
+            const article = articles.find(a => a.id === id);
+            if (article) {
+                article.active = !article.active;
+                saveArticles();
+                displayArticles();
+            }
+        };
+        
+        // Toggle admin panel
+        function toggleAdminPanel(show) {
+            adminPanel.style.display = show ? 'block' : 'none';
+            loginToggle.innerHTML = show ? '<i class="bx bx-lock-open-alt"></i>' : '<i class="bx bx-lock-alt"></i>';
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is admin and update UI accordingly
+            toggleAdminPanel(isAdmin());
+            displayArticles();
+            
+            // Login toggle button
+            loginToggle.addEventListener('click', function() {
+                if (isAdmin()) {
+                    // Logout
+                    sessionStorage.removeItem('isAdmin');
+                    toggleAdminPanel(false);
+                    displayArticles(); // Refresh articles display to remove admin buttons
+                } else {
+                    // Show login modal
+                    loginModal.style.display = 'flex';
+                }
+            });
+            
+            // Cancel login button
+            cancelLogin.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+            });
+            
+            // Login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const password = document.getElementById('adminPassword').value;
+                
+                if (password === ADMIN_PASSWORD) {
+                    sessionStorage.setItem('isAdmin', 'true');
+                    toggleAdminPanel(true);
+                    loginModal.style.display = 'none';
+                    displayArticles(); // Refresh to show admin controls
+                    document.getElementById('adminPassword').value = ''; // Clear password field
+                    alert('Admin login successful.');
+                } else {
+                    alert('Incorrect password. Please try again.');
+                }
+            });
+            
+            // Logout button
+            logoutBtn.addEventListener('click', function() {
+                sessionStorage.removeItem('isAdmin');
+                toggleAdminPanel(false);
+                displayArticles(); // Refresh articles display to remove admin buttons
+            });
+            
+            // Article form submission (add new article)
+            articleForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!isAdmin()) return;
+                
+                const title = document.getElementById('articleTitle').value;
+                const image = document.getElementById('articleImage').value;
+                const content = document.getElementById('articleContent').value;
+                
+                // Create excerpt (first 100 characters)
+                const plainTextContent = content.replace(/[#*_]/g, ''); // Remove markdown characters
+                const excerpt = plainTextContent.substring(0, 100) + (plainTextContent.length > 100 ? '...' : '');
+                
+                const newArticle = {
+                    id: Date.now(), // Use timestamp as ID
+                    title: title,
+                    image: image,
+                    excerpt: excerpt,
+                    content: content,
+                    date: new Date().toISOString().split('T')[0],
+                    active: true
+                };
+                
+                // Add to the beginning of the array
+                articles.unshift(newArticle);
+                saveArticles();
+                
+                // Reset form and refresh display
+                articleForm.reset();
+                displayArticles();
+                
+                alert('Article added successfully!');
+            });
+        });
+    </script>
+    
+    <!-- Your existing scripts -->
+    <script src="../Javascript/Scrip.js"></script>
+</body>
+</html>
