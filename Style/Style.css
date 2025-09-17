@@ -334,7 +334,7 @@ section{
 }
 .about-content p{
     font-size: 2rem;
-    margin: 2rem 0 3rem;
+    margin: 2rem 0 0;
 }
 
 .about-content li{
@@ -350,7 +350,43 @@ section{
     padding-left: 5rem;
 }
 
+/* Button Styling for btncourse */
+.btncourse {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(90deg, #460000, #eb258b);
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 8px;
+}
 
+/* Hover Effect */
+.btncourse:hover {
+    background: linear-gradient(90deg, #eb258b, #460000);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Active Effect */
+.btncourse:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .btncourse {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin: 6px;
+    }
+}
 
 .service h2{
     margin-bottom: 5rem;
@@ -916,3 +952,4 @@ marquee {
     border: 1px solid rgba(255, 255, 255, 0.18);
     text-shadow: 1px 1px 2px rgba(0, 217, 255, 0.274);
 }
+
